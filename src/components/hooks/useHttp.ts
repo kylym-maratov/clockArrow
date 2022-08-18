@@ -1,13 +1,12 @@
 import axios from "axios";
+import { urls } from "../../constants/urls";
 
-const regions: string = 'http://worldtimeapi.org/api/timezone'
-const currentTime: string = 'http://worldtimeapi.org/api/timezone/'
 
 export const useHttp = (setError: Function) => {
     const getRegions = async () => {
         try {
             setError('')
-            const { data } = await axios.get<string[]>(regions)
+            const { data } = await axios.get<string[]>(urls.TIMEZONEAPI)
 
             return data
 
@@ -19,7 +18,7 @@ export const useHttp = (setError: Function) => {
     const getCurrentTime = async (region: string) => {
         try {
             setError('')
-            const { data } = await axios.get<any>(currentTime + region)
+            const { data } = await axios.get<any>(urls.TIMEZONEAPI + region)
 
             return data
 

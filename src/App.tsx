@@ -52,7 +52,7 @@ function App() {
         </div>
         <h1 className="current-region">{currentRegion.regionName}</h1>
         <div className="nav">
-          <select onChange={selectRegion}>{
+          <select onChange={selectRegion} disabled={!regions.length}>{
             regions.map((item, i) => {
               return <option key={i}>{item}</option>
             })
