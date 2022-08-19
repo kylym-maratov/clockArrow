@@ -1,7 +1,7 @@
 .clock {
     border-radius: 50%;
     background: #fff url('../assets/images/clock.png') no-repeat center;
-    background-size: 105%;
+    background-size: 99%;
     height: 22em;
     padding-bottom: 31%;
     position: relative;

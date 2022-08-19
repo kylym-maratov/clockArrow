@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Clock } from './components/clock';
 import { useHttp } from './components/hooks/useHttp';
-
-
-interface CurrentRegionTypes {
-  regionName: string;
-  region: object | null;
-}
+import { CurrentRegionTypes } from './types/app.types';
 
 
 function App() {
@@ -50,7 +45,7 @@ function App() {
         <div className="dial">
           <Clock region={currentRegion.region} />
         </div>
-        <h1 className="current-region">{currentRegion.regionName}</h1>
+        <h1>{currentRegion.regionName}</h1>
         <div className="nav">
           <select onChange={selectRegion} disabled={!regions.length}>{
             regions.map((item, i) => {

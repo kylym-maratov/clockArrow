@@ -1,15 +1,7 @@
 import React, { useEffect, useState } from "react"
+import { InitialClocksTypes, Props } from "../../types/clock.types"
 import "./style.css"
 
-interface Props {
-    region: any;
-}
-
-interface InitialClocksTypes {
-    hand: string;
-    angle: number;
-    time: number;
-}
 
 export const Clock = ({ region }: Props): JSX.Element => {
     const [initialClock, setInitialClock] = useState<InitialClocksTypes[] | null>(null)
@@ -86,29 +78,39 @@ export const Clock = ({ region }: Props): JSX.Element => {
     }, [initialClock])
 
     return (
-        <div className="clock">
-            <div className="hours-container">
-                <div className="hours" style={{
-                    transform: 'rotateZ(' + initialClock?.[0].angle + 'deg)'
-                }}></div>
+        <>
+            <div className="clock">
+                <div className="hours-container">
+                    <div className="hours" style={{
+                        transform: 'rotateZ(' + initialClock?.[0].angle + 'deg)'
+                    }}></div>
+                </div>
+                <div className="minutes-container">
+                    <div className="minutes" style={{
+                        transform: 'rotateZ(' + initialClock?.[1].angle + 'deg)'
+                    }}></div>
+                </div>
+                <div className="seconds-container">
+                    <div className="seconds" style={{
+                        transform: 'rotateZ(' + initialClock?.[2].angle + 'deg)',
+                        transition: initialClock?.[2].time !== 0 ? '.3s' : 'none'
+                    }}></div>
+                </div>
             </div>
-            <div className="minutes-container">
-                <div className="minutes" style={{
-                    transform: 'rotateZ(' + initialClock?.[1].angle + 'deg)'
-                }}></div>
-            </div>
-            <div className="seconds-container">
-                <div className="seconds" style={{
-                    transform: 'rotateZ(' + initialClock?.[2].angle + 'deg)',
-                    transition: initialClock?.[2].time !== 0 ? '.3s' : 'none'
-                }}></div>
-            </div>
-        </div >
+            <h2>
+                {
+                    initialClock?.length ?
+                        `${initialClock?.[0].time}:${initialClock?.[1].time}:${initialClock?.[2].time}`
+                        :
+                        null
+                }
+            </h2>
+        </>
     )
 }
 
 
-const getFormatTime = (region: any) => {
+export const getFormatTime = (region: any) => {
     const time = region.datetime.split('T')[1].split('.')[0]
     const hours = Number(time.split(':')[0])
     const minutes = Number(time.split(':')[1])
