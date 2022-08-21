@@ -45,7 +45,8 @@ function App() {
         <div className="dial">
           <Clock region={currentRegion.region} />
         </div>
-        <h1>{currentRegion.regionName}</h1>
+        <h1>
+          {currentRegion.regionName} {currentRegion.region && currentRegion.region.utc_offset}</h1>
         <div className="nav">
           <select onChange={selectRegion} disabled={!regions.length}>{
             regions.map((item, i) => {
