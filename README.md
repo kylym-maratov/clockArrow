@@ -1,4 +1,4 @@
-<img src="https://ibb.co/cX61SLm/clock.gif" height="150" width="150" alt="logo">
+<img src="https://i.ibb.co/BKyt5N1/clock.gif" alt="logo" height="150" width="150"> 
 <h1>Clock with arrow</h1>
 <h3>Description</h3>
 <p>A simple clock clock to get the exact time in a particular region. With graphic coverings.</p>
