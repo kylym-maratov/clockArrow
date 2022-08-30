@@ -4,18 +4,16 @@ body {
   box-sizing: border-box;
 }
 
-
-.dial {
-  width: 500px;
-}
- 
-
 .App {
   width: 1000px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0px auto; 
+}
+
+.clock-wrapper {
+  width: 500px;
 }
 
 .container {
@@ -32,4 +30,6 @@ body {
   width: 500px;
   height: 40px;
   border-radius: 5px;
+  background: none;
+  border: 1px solid gray;
 }

@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react"
-import { InitialClocksTypes, Props } from "../../types/clock.types"
-import "./style.css"
+import React, { useEffect, useState } from "react";
+import { InitialClocksTypes, Props } from "../../types/clock.types";
+import { getFormatTime } from './modules/scripts';
+import "./style.css";
 
 
 export const Clock = ({ region }: Props): JSX.Element => {
@@ -82,12 +83,14 @@ export const Clock = ({ region }: Props): JSX.Element => {
             <div className="clock">
                 <div className="hours-container">
                     <div className="hours" style={{
-                        transform: 'rotateZ(' + initialClock?.[0].angle + 'deg)'
+                        transform: 'rotateZ(' + initialClock?.[0].angle + 'deg)',
+                        transition: initialClock?.[0].time !== 0 ? '.3s' : 'none'
                     }}></div>
                 </div>
                 <div className="minutes-container">
                     <div className="minutes" style={{
-                        transform: 'rotateZ(' + initialClock?.[1].angle + 'deg)'
+                        transform: 'rotateZ(' + initialClock?.[1].angle + 'deg)',
+                        transition: initialClock?.[1].time !== 0 ? '.3s' : 'none'
                     }}></div>
                 </div>
                 <div className="seconds-container">
@@ -110,11 +113,3 @@ export const Clock = ({ region }: Props): JSX.Element => {
 }
 
 
-export const getFormatTime = (region: any) => {
-    const time = region.datetime.split('T')[1].split('.')[0]
-    const hours = Number(time.split(':')[0])
-    const minutes = Number(time.split(':')[1])
-    const seconds = Number(time.split(':')[2])
-
-    return { minutes, hours, seconds }
-}

@@ -5,13 +5,13 @@ import { CurrentRegionTypes } from './types/app.types';
 
 
 function App() {
-  const [error, setError] = useState<string>('')
-  const { getRegions, getCurrentTime } = useHttp(setError)
-  const [regions, setRegions] = useState<string[]>([])
+  const [error, setError] = useState<string>('');
+  const { getRegions, getCurrentTime } = useHttp(setError);
+  const [regions, setRegions] = useState<string[]>([]);
   const [currentRegion, setCurrentRegion] = useState<CurrentRegionTypes>({
     regionName: '',
     region: null
-  })
+  });
 
   useEffect(() => {
     if (!regions.length) {
@@ -21,28 +21,28 @@ function App() {
           setCurrentRegion({
             regionName: data[0],
             region: await getCurrentTime(data[0])
-          })
+          });
         }
       })
     }
 
     if (currentRegion.regionName) {
       getCurrentTime(currentRegion.regionName).then((data) => {
-        setCurrentRegion({ regionName: currentRegion.regionName, region: data })
-      })
+        setCurrentRegion({ regionName: currentRegion.regionName, region: data });
+      });
     }
 
 
-  }, [currentRegion.regionName])
+  }, [currentRegion.regionName]);
 
   const selectRegion = ({ target }: React.ChangeEvent<HTMLSelectElement>) => {
-    setCurrentRegion({ regionName: target.value, region: null })
+    setCurrentRegion({ regionName: target.value, region: null });
   }
 
   return (
     <div className="App">
       <div className="container">
-        <div className="dial">
+        <div className="clock-wrapper">
           <Clock region={currentRegion.region} />
         </div>
         <h1>
